@@ -1,0 +1,48 @@
+
+
+
+feiertags_dict={
+        "1.1.19":"Neujahr",
+        "6.1.19":"Heilige Drei Könige",
+        "19.4.19":"Karfreitag",
+        "21.4.19":"Ostern",
+        "22.4.19":"Ostermontag",
+        "30.5.19":"Christi Himmelfahrt",
+        "10.6.19":"Pfingstmontag",
+        "20.6.19":"Fronleichnam",
+        "3.10.19":"Tag der Deutschen Einheit",
+        "1.11.19":"Allerheiligen",
+
+        "25.12.19":"Weihnachten",
+        "26.12.19":"2. Weichnatstag"
+}
+
+a =[
+    "                   ",
+    "  xxxxx  xxxxx xxx ",
+    " x       x      x  ",
+    " x       x      x  ",
+    " x  xxx  xxxxx  x  ",
+    " x    x  x      x  ",
+    " x    x  x      x  ",
+    "  xxxx   x     xxxx",
+    "                   "
+]
+
+ergebnis=[]
+for d in a:
+    print(d)
+    wert=0
+    faktor=1
+
+    for e in range((len(d)-1),0,-1):
+        if d[e]=="x":
+            wert +=faktor
+        faktor *=2
+    ergebnis.append(wert)
+
+print(ergebnis)
+
+try:
+    print("Heil")
+except Error
