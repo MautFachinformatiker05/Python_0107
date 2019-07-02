@@ -1,0 +1,23 @@
+
+def hi(name,alter="25"):
+    print("hi "+name+" you are "+alter)
+
+hi("Manuel","50")
+hi("Tobias")
+
+def wochentage():
+    return ["mo", "di", "mi", "do", "fr", "sa", "so"]
+
+
+
+def wochentage2(woche):
+    woche.reverse()
+    if (len(woche)== 0):
+        return
+    print(woche.pop(), end=" ")
+    wochentage2(woche)
+
+
+
+
+wochentage2(wochentage())
