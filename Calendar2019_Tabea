@@ -1,0 +1,38 @@
+monats_namen = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
+
+tage_pro_monat = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+def drucke_monat(monatsname, tage, wochentag):
+
+    file_handle.write(monatsname)
+    file_handle.write("Mo | Di | Mi | Do | Fr | Sa | So |\n")
+    file_handle.write("---|----|----|----|----|----|----|\n")
+
+    indent = "   | " * wochentag
+    file_handle.write(indent) #, end='')
+
+    for t in tage:
+        #print(str(t) + " | ", end='')
+
+        # print("{:2d} | ".format(t), end='')
+        file_handle.write("{:2d} | ".format(t)) #, end='')
+
+        wochentag = (wochentag + 1) % 7
+        if wochentag == 0:
+            file_handle.write("\n---|----|----|----|----|----|----|\n")
+    file_handle.write("\n\n")
+
+i = 0
+
+file_handle = open("calendar2019.txt","w")
+
+# Mo = 0, Di = 1, Mi = 2, Do = 3, Fr = 4, Sa = 5, So = 6
+w = 1 # Dienstag
+while i <= 11:
+    mname = monats_namen[i]
+    mtage = tage_pro_monat[i]
+    i = i + 1
+    drucke_monat(mname + "\n",  range(1, mtage + 1), w)
+    w = (w + mtage) % 7
+
+file_handle.close()
