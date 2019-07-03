@@ -1,0 +1,30 @@
+fp = open("C:\\Test\\Kale2019.txt", "w")
+
+monat = [("Jan", 31), ("Feb", 28), ("Mar", 31), ("Apr", 30),
+         ("Mai", 31), ("Jun", 30), ("Jul", 31), ("Aug", 31),
+         ("Sep", 30), ("Okt", 31), ("Nov", 30), ("Dez", 31)]
+
+wochentage = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
+
+zeile_mit_wochentags_namen = ""
+position_in_der_woche = 1
+for s in wochentage:
+    zeile_mit_wochentags_namen += s + "\t"
+zeile_mit_wochentags_namen = "\n" + ("-" * 8) + "\n\n\n" + zeile_mit_wochentags_namen + "\n"
+
+for aktuelles_monats_tupel in monat:
+    fp.write(aktuelles_monats_tupel [0])
+    fp.write(zeile_mit_wochentags_namen)
+
+    #Setzen des Startspunktes für die einzelnen Monate
+    fp.write((position_in_der_woche * "\t"))
+
+
+    for tagesnummer in range(1, aktuelles_monats_tupel [1] + 1):
+        fp.write(str(tagesnummer) + "\t")
+        position_in_der_woche += 1
+        if position_in_der_woche == 7:
+            position_in_der_woche = 0
+            fp.write("\n")
+
+    fp.write("\n\n\n")
