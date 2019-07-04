@@ -1,0 +1,19 @@
+from docx import Document
+
+document = Document('heft.docx')
+
+daten = ["D1", "D2", "D3", "D4", "D5"]
+
+for zelle in document.tables[0]._cells:
+    if zelle.text == "DATUM0":
+        zelle.text = daten[0]
+    if zelle.text == "DATUM1":
+        zelle.text = daten[1]
+    if zelle.text == "DATUM2":
+        zelle.text = daten[2]
+    if zelle.text == "DATUM3":
+        zelle.text = daten[3]
+    if zelle.text == "DATUM4":
+        zelle.text = daten[4]
+
+document.save('new-file-name.docx')
