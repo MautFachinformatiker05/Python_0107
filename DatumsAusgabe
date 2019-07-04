@@ -1,0 +1,11 @@
+import datetime
+monat = [("Jan", 31), ("Feb", 28), ("Mar", 31), ("Apr", 30),
+         ("Mai", 31), ("Jun", 30), ("Jul", 31), ("Aug", 31),
+         ("Sep", 30), ("Okt", 31), ("Nov", 30), ("Dez", 31)]
+
+startdatum=datetime.date(2019,1,1)
+
+for i in range (0,31):
+    if startdatum.weekday() <=4:
+        print(str(startdatum))
+    startdatum +=datetime.timedelta(days=1)
