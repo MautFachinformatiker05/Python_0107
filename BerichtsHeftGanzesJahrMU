@@ -1,0 +1,70 @@
+import datetime
+from docx import Document
+
+
+
+def text_dateiname(datum):
+    montag = get_montag(datum)
+    montag_string = montag.strftime("%Y_%m_%d")
+
+    freitag = montag + datetime.timedelta(days=4)
+    freitag_string = freitag.strftime("%Y_%m_%d")
+
+    kalenderwoche = str(montag.strftime("%V"))
+
+    text = "KW " + kalenderwoche + " " + montag_string + " bis " + freitag_string + "_UnverdorbenManuel.docx"
+
+    return text
+
+def get_montag(datum):
+    montag = datum - datetime.timedelta(datum.weekday())
+    return montag
+
+
+
+
+def write_berichtsheft(datum):
+    daten = []
+    montag=get_montag(datum)
+    document = Document('heft.docx')
+    for i in range(0, 5):
+        recent = montag + datetime.timedelta(days=i)
+        daten.append(str(recent.strftime("%d.%m.%Y")))
+
+
+
+    for zelle in document.tables[0]._cells:
+
+
+
+        if zelle.text == "Datum0":
+            zelle.text = daten[0]
+        if zelle.text == "Datum1":
+            zelle.text = daten[1]
+        if zelle.text == "Datum2":
+            zelle.text = daten[2]
+        if zelle.text == "Datum3":
+            zelle.text = daten[3]
+        if zelle.text == "Datum4":
+            zelle.text = daten[4]
+
+    text = text_dateiname(montag)
+    document.save(text)
+
+
+
+
+datums = datetime.datetime(2019, 1, 1)
+
+
+# Letzte Woche??
+for w in range(0, 52):
+    write_berichtsheft(datums)
+    print(text_dateiname(datums))
+    datums += datetime.timedelta(days=7)
+
+
+
+
+
+
