@@ -1,0 +1,59 @@
+from tkinter import *
+from tkinter import filedialog
+from tkinter import messagebox
+
+
+class Window(Frame):
+    dateiname=""
+    def __init__(self, master=None):
+        Frame.__init__(self, master)
+        self.master = master
+
+        # widget can take all window
+        self.pack(fill=BOTH, expand=1)
+
+
+        knopf_vorlage = Button(self, text="Vorlage Auswählen", command=self.klicken_knopf_vorlage)
+        knopf_ziel_ordner = Button(self, text="Ziel Ordner bestimmen", command=self.klicken_ziel_ordner)
+        #einleitung=Label(self,text="in Datum muss für Montag Datum0 stehen für Dienstag Datum1 usw...")
+        datum_label=Label(self,text="Bitte hier Datum eingeben")
+        datum_eingabe=Entry(self)
+        knopf_ausfuehren=Button(self,text="Berichtshefte erzeugen",command=self.erzeuge_berichtshefte)
+
+
+
+        #einleitung.grid(row=0,column=0)
+        datum_eingabe.grid(row=1,column=1)
+        datum_label.grid(row=1,sticky=W)
+        knopf_vorlage.grid(row=3,column=1)
+        knopf_ziel_ordner.grid(row=3)
+        knopf_ausfuehren.grid(row=4)
+
+
+    def klicken_knopf_vorlage(self):
+        dateiname= filedialog.askopenfilename(initialdir = "/",title = "Berichtsheftvorlage auswählen",filetypes = (("Word-Dokumente","*.docx"),("Alle Dateien","*.*")))
+        print (dateiname)
+
+    def klicken_ziel_ordner(self):
+        ordnername=filedialog.askdirectory()
+
+    def erzeuge_berichtshefte(self):
+        print ("Bla")
+        messagebox.showinfo("Fehler", "Bitte eingabe überprüfen")
+
+        exit()
+
+
+root = Tk()
+app = Window(root)
+root.wm_title("Berichtsheftgenerator by FA05")
+root.geometry("320x200")
+root.mainloop()
+
+
+#dateiname =  filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("Word-Dokumente","*.docx"),("Alle Dateien","*.*")))
+
+#print(dateiname)
+#ordername=filedialog.askdirectory()
+
+#print(ordername)
